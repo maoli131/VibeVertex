@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import MainPage from './components/MainPage.js';
-import Truth from './components/Truth.js';
+import SecondaryPage from './components/SecondaryPage.js';
 import NotFound from './components/NotFound';
 
 function App() {
@@ -10,7 +10,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="truth" element={<Truth colorTheme={'light'} />} />
+        <Route path="truth" element={<SecondaryPage colorTheme={'light'} path={'truth'} />} />
+        <Route path="dare" element={<SecondaryPage colorTheme={'dark'} path={'dare'} />} />
+        <Route path="game" element={<SecondaryPage colorTheme={'light'} path={'game'} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

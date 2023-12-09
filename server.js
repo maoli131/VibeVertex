@@ -16,8 +16,25 @@ app.get('/', (req, res) => {
 
 app.get('/api/truth', (req, res) => {
 	const data = {
+		title: '真心话',
 		message: '你做过的最疯狂的事情是什么？'
 	};
+	res.json(data);
+});
+
+app.get('/api/dare', (req, res) => {
+	const data = {
+		title: '大冒险',
+		message: '做出一个你认为最性感的表情或动作。'
+	}
+	res.json(data);
+});
+
+app.get('/api/game', (req, res) => {
+	const data = {
+		title: '逛三园',
+		message: '星期天，逛三园，什么园'
+	}
 	res.json(data);
 });
 
