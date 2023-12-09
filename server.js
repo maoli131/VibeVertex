@@ -11,16 +11,16 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 
 app.get('/', (req, res) => {
-    res.send('Hello from the server');
+	res.send('Hello from the server');
 });
 
 app.get('/api/truth', (req, res) => {
-    const data = {
-        message: 'This is truth from the backend.'
-    };
-    res.json(data);
+	const data = {
+		message: 'This is truth from the backend.'
+	};
+	res.json(data);
 });
 
 app.listen(PORT, () => {
-    console.log('server listening on port ${PORT}');
+	console.log('server listening on port ${PORT}');
 });
