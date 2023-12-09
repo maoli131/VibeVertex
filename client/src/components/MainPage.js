@@ -1,23 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const sectionStyle = (colorTheme) => {
-	const isLight = colorTheme === 'light';
-	const lightColor = '#FEF2F4';
-	const darkColor = '#FCC8D1';
-	return {
-		height: '40vh',
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: isLight ? lightColor : darkColor,
-		color: isLight ? darkColor : lightColor,
-		fontSize: '6em',
-		fontWeight: 200,
-	};
-};
+import { getMainPageStyles } from './Styles';
 
 function MainPage() {
+
+	const stylesLight = getMainPageStyles('light');
+	const stylesDark = getMainPageStyles('dark');
 
 	const navigate = useNavigate();
 	const handleOnClick = (path) => {
@@ -26,13 +14,13 @@ function MainPage() {
 
 	return (
 		<div>
-			<div style={sectionStyle('dark')} onClick={() => handleOnClick('/truth')}>
+			<div style={stylesDark.section} onClick={() => handleOnClick('/truth')}>
 				真心话
 			</div>
-			<div style={sectionStyle('light')} onClick={() => handleOnClick('/dare')}>
+			<div style={stylesLight.section} onClick={() => handleOnClick('/dare')}>
 				大冒险
 			</div>
-			<div style={sectionStyle('dark')} onClick={() => handleOnClick('/game')}>
+			<div style={stylesDark.section} onClick={() => handleOnClick('/game')}>
 				小游戏
 			</div>
 		</div>

@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 
 app.get('/api/truth', (req, res) => {
 	const data = {
-		message: 'This is truth from the backend.'
+		message: '你做过的最疯狂的事情是什么？'
 	};
 	res.json(data);
 });

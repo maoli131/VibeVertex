@@ -10,7 +10,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="truth" element={<Truth />} />
+        <Route path="truth" element={<Truth colorTheme={'light'} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { getSecondaryPageStyles } from './Styles';
 
-function Truth() {
+function Truth({ colorTheme }) {
+
+	const styles = getSecondaryPageStyles(colorTheme);
 
 	const [data, setData] = useState(null);
 
 	useEffect(() => {
-		fetch('http://localhost:3001/api/truth')
+		fetch('http://192.168.1.66:3001/api/truth')
 			.then(response => response.json())
 			.then(data => {
 				setData(data);
@@ -16,9 +19,9 @@ function Truth() {
 	}, []);
 
 	return (
-		<div>
-			<h1>真心话</h1>
-			{data && <p>{data.message}</p>}
+		<div style={styles.container}>
+			<h1 style={styles.title}>真心话</h1>
+			{data && <p style={styles.paragraph}>{data.message}</p>}
 		</div>
 	);
 }
