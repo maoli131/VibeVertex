@@ -9,13 +9,19 @@ function SecondaryPage({ colorTheme, path }) {
 	const styles = getSecondaryPageStyles(colorTheme);
 	const navigate = useNavigate();
 
+	// states
 	const [isLoading, setIsLoading] = useState(true);
-	const [jsonData, setJsonData] = useState({
-		title: '请稍等',
-		messages: ['AI智能生成中...',],
+	const [jsonData, setJsonData] = useState(() => {
+		const savedData = sessionStorage.getItem(`jsonData-${path}`);
+		return savedData ? JSON.parse(savedData) : {
+			title: '请稍等',
+			messages: ['AI智能生成中...',],
+		}
 	});
-	const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
-
+	const [currentMessageIndex, setCurrentMessageIndex] = useState(() => {
+		const savedIndex = sessionStorage.getItem(`currentMessageIndex-${path}`);
+		return savedIndex ? JSON.parse(savedIndex) : 0;
+	});
 
 	// request to API to get more data
 	const fetchData = (path) => {
@@ -23,7 +29,9 @@ function SecondaryPage({ colorTheme, path }) {
 		fetch(serverAPIPath + path)
 			.then(response => response.json())
 			.then(data => {
-				setJsonData(JSON.parse(data));
+				const parsedData = JSON.parse(data);
+				setJsonData(parsedData);
+				sessionStorage.setItem(`jsonData-${path}`, JSON.stringify(parsedData));
 				setCurrentMessageIndex(0); // Reset index to start from the new batch
 				setIsLoading(false);
 			})
@@ -49,8 +57,18 @@ function SecondaryPage({ colorTheme, path }) {
 
 	// initial loading of data
 	useEffect(() => {
-		fetchData(path);
+		const savedData = sessionStorage.getItem(`jsonData-${path}`);
+		if (!savedData) {
+			fetchData(path);
+		} else {
+			setIsLoading(false);
+		}
 	}, [path]);
+
+	// storing message index to session store
+	useEffect(() => {
+		sessionStorage.setItem(`currentMessageIndex-${path}`, JSON.stringify(currentMessageIndex));
+	}, [currentMessageIndex, path]);
 
 	return (
 		<div style={styles.container}>

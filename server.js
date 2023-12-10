@@ -25,6 +25,7 @@ app.get('/', (req, res) => {
 
 app.get('/api/truth', async (req, res) => {
 	try {
+		console.log('starting request truth');
 		const questions = await genTruthQuestions(10);
 		res.json(questions);
 		console.log(questions);
@@ -35,6 +36,7 @@ app.get('/api/truth', async (req, res) => {
 
 app.get('/api/dare', async (req, res) => {
 	try {
+		console.log('starting request dare');
 		const questions = await genDareQuestions(10);
 		res.json(questions);
 		console.log(questions);
@@ -45,6 +47,7 @@ app.get('/api/dare', async (req, res) => {
 
 app.get('/api/game', async (req, res) => {
 	try {
+		console.log('starting request game');
 		const questions = await genGameQuestions(10);
 		res.json(questions);
 		console.log(questions);
