@@ -11,7 +11,7 @@ const ai = new OpenAI({
 })
 
 // Data fetching functions (Gen-AI appraoch)
-async function genTruthQuestions(num) {
+async function genTruthIdeas(num) {
   const completion = await ai.chat.completions.create({
     response_format: { "type": "json_object" },
     messages: [
@@ -23,7 +23,7 @@ async function genTruthQuestions(num) {
   return completion.choices[0].message.content;
 }
 
-async function genDareQuestions(num) {
+async function genDareIdeas(num) {
   const completion = await ai.chat.completions.create({
     response_format: { "type": "json_object" },
     messages: [
@@ -35,7 +35,7 @@ async function genDareQuestions(num) {
   return completion.choices[0].message.content;
 }
 
-async function genGameQuestions(num) {
+async function genGameIdeas(num) {
   const completion = await ai.chat.completions.create({
     response_format: { "type": "json_object" },
     messages: [
@@ -47,4 +47,4 @@ async function genGameQuestions(num) {
   return completion.choices[0].message.content;
 }
 
-module.exports = { genTruthQuestions, genDareQuestions, genGameQuestions };
+module.exports = { genTruthIdeas, genDareIdeas, genGameIdeas };

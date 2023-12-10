@@ -9,55 +9,58 @@ require('dotenv').config()
 
 const express = require('express');
 const cors = require('cors');
-const { genTruthQuestions, genDareQuestions, genGameQuestions } = require('./ai_engine');
+const { genTruthIdeas, genDareIdeas, genGameIdeas } = require('./ai_engine');
+const { fetchIdeas } = require('./data_engine');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const useAI = true;
+const NUM_IDEADS = 10;
 
-const onError = (error) => {
-	console.error('Error:', error);
-	res.status(500).send('AI没想出来问题，请待会儿再试试。');
-}
-
+// Server initialization
 app.use(cors());
+
+app.listen(PORT, () => {
+	console.log(`server listening on port ${PORT}`);
+});
 
 app.get('/', (req, res) => {
 	res.send('Hello from the server');
 });
 
-app.get('/api/truth', async (req, res) => {
+// Main functions
+async function handleIdeaRequest(req, res, fetchIdeas, genIdeas) {
+	let ideas = null;
 	try {
-		console.log('starting request truth');
-		const questions = await genTruthQuestions(10);
-		res.json(questions);
-		console.log(questions);
+		if (useAI) {
+			console.log('generating ideas');
+			ideas = await genIdeas(NUM_IDEADS);
+		} else {
+			console.log('fetching ideas');
+			ideas = await fetchIdeas(NUM_IDEADS);
+		}
 	} catch (error) {
 		onError(error);
 	}
-});
+	console.log(ideas);
+	res.json(ideas);
+}
 
-app.get('/api/dare', async (req, res) => {
-	try {
-		console.log('starting request dare');
-		const questions = await genDareQuestions(10);
-		res.json(questions);
-		console.log(questions);
-	} catch (error) {
-		onError(error);
-	}
-});
+// error handling
+const onError = (error) => {
+	console.error('Error:', error);
+	res.status(500).send('AI没想出来问题，请待会儿再试试。');
+}
 
-app.get('/api/game', async (req, res) => {
-	try {
-		console.log('starting request game');
-		const questions = await genGameQuestions(10);
-		res.json(questions);
-		console.log(questions);
-	} catch (error) {
-		onError(error);
-	}
-});
+// API definitions
+app.get('/api/truth', async (req, res) =>
+	handleIdeaRequest(req, res, fetchIdeas, genTruthIdeas)
+);
 
-app.listen(PORT, () => {
-	console.log('server listening on port ${PORT}');
-});
+app.get('/api/dare', async (req, res) =>
+	handleIdeaRequest(req, res, fetchIdeas, genDareIdeas)
+);
+
+app.get('/api/game', async (req, res) =>
+	handleIdeaRequest(req, res, fetchIdeas, genGameIdeas)
+);
