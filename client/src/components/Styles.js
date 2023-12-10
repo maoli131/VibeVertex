@@ -24,7 +24,7 @@ const getSecondaryPageStyles = (theme) => {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'space-around',
       height: '100vh', // This ensures the container takes the full viewport height
       backgroundColor: isLight ? lightColor : darkColor,
       color: isLight ? darkColor : lightColor,
@@ -40,7 +40,24 @@ const getSecondaryPageStyles = (theme) => {
       fontWeight: 200,
       textAlign: 'center',
       marginTop: '0',
-    }
+    },
+    button: {
+      padding: '14px 40px',
+      backgroundColor: lightColor,
+      border: '2px solid' + darkColor,
+      color: darkColor,
+      fontSize: '16px',
+      width: '40%',
+    },
+    button_disable: {
+      padding: '14px 40px',
+      backgroundColor: lightColor,
+      border: '2px solid' + darkColor,
+      color: darkColor,
+      fontSize: '16px',
+      width: '40%',
+      opacity: '0.4',
+    },
   }
 };
 

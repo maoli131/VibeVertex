@@ -7,6 +7,7 @@
 
 const express = require('express');
 const cors = require('cors');
+const { genTruthQuestions } = require('./ai_engine');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -17,18 +18,21 @@ app.get('/', (req, res) => {
 	res.send('Hello from the server');
 });
 
-app.get('/api/truth', (req, res) => {
-	const data = {
-		title: '真心话',
-		message: '你做过的最疯狂的事情是什么？'
-	};
-	res.json(data);
+app.get('/api/truth', async (req, res) => {
+	try {
+		const questions = await genTruthQuestions(10); // Generate 10 truth questions
+		res.json(questions);
+		console.log(questions);
+	} catch (error) {
+		console.error('Error:', error);
+		res.status(500).send('AI没想出来问题，请待会儿再试试。');
+	}
 });
 
 app.get('/api/dare', (req, res) => {
 	const data = {
 		title: '大冒险',
-		message: '做出一个你认为最性感的表情或动作。'
+		messages: ['做出一个你认为最性感的表情或动作。'],
 	}
 	res.json(data);
 });
@@ -36,7 +40,7 @@ app.get('/api/dare', (req, res) => {
 app.get('/api/game', (req, res) => {
 	const data = {
 		title: '逛三园',
-		message: '星期天，逛三园，什么园'
+		messages: ['星期天，逛三园，什么园'],
 	}
 	res.json(data);
 });
