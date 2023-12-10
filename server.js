@@ -7,10 +7,15 @@
 
 const express = require('express');
 const cors = require('cors');
-const { genTruthQuestions } = require('./ai_engine');
+const { genTruthQuestions, genDareQuestions, genGameQuestions } = require('./ai_engine');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+const onError = (error) => {
+	console.error('Error:', error);
+	res.status(500).send('AI没想出来问题，请待会儿再试试。');
+}
 
 app.use(cors());
 
@@ -20,29 +25,32 @@ app.get('/', (req, res) => {
 
 app.get('/api/truth', async (req, res) => {
 	try {
-		const questions = await genTruthQuestions(10); // Generate 10 truth questions
+		const questions = await genTruthQuestions(10);
 		res.json(questions);
 		console.log(questions);
 	} catch (error) {
-		console.error('Error:', error);
-		res.status(500).send('AI没想出来问题，请待会儿再试试。');
+		onError(error);
 	}
 });
 
-app.get('/api/dare', (req, res) => {
-	const data = {
-		title: '大冒险',
-		messages: ['做出一个你认为最性感的表情或动作。'],
+app.get('/api/dare', async (req, res) => {
+	try {
+		const questions = await genDareQuestions(10);
+		res.json(questions);
+		console.log(questions);
+	} catch (error) {
+		onError(error);
 	}
-	res.json(data);
 });
 
-app.get('/api/game', (req, res) => {
-	const data = {
-		title: '逛三园',
-		messages: ['星期天，逛三园，什么园'],
+app.get('/api/game', async (req, res) => {
+	try {
+		const questions = await genGameQuestions(10);
+		res.json(questions);
+		console.log(questions);
+	} catch (error) {
+		onError(error);
 	}
-	res.json(data);
 });
 
 app.listen(PORT, () => {

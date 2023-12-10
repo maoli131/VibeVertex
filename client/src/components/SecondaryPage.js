@@ -11,8 +11,8 @@ function SecondaryPage({ colorTheme, path }) {
 
 	const [isLoading, setIsLoading] = useState(true);
 	const [jsonData, setJsonData] = useState({
-		title: '真心话',
-		messages: ['AI正在努力思考题目...',],
+		title: '请稍等',
+		messages: ['AI智能生成中...',],
 	});
 	const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
 

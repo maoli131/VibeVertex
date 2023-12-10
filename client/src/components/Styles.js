@@ -40,6 +40,8 @@ const getSecondaryPageStyles = (theme) => {
       fontWeight: 200,
       textAlign: 'center',
       marginTop: '0',
+      maxHeight: '400px',
+      overflow: 'auto',
     },
     button: {
       padding: '14px 40px',
