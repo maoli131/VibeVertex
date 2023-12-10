@@ -1,5 +1,8 @@
 /**
  * main server file
+ * 
+ * This handles the API calls and use either AI-engine or DB to
+ * generate the trust/dare/game questions. 
  */
 
 const express = require('express');
