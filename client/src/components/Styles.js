@@ -49,15 +49,13 @@ const getSecondaryPageStyles = (theme) => {
       fontSize: '16px',
       width: '40%',
     },
-    button_disable: {
-      padding: '14px 40px',
-      backgroundColor: lightColor,
-      border: '2px solid' + darkColor,
-      color: darkColor,
-      fontSize: '16px',
-      width: '40%',
-      opacity: '0.4',
-    },
+    backText: {
+      position: 'absolute',
+      top: '20px',
+      left: '30px',
+      color: theme === 'light' ? darkColor : lightColor,
+      fontSize: '1.5em'
+    }
   }
 };
 
