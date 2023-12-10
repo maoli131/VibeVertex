@@ -25,7 +25,7 @@ const getSecondaryPageStyles = (theme) => {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'space-around',
-      height: '100vh', // This ensures the container takes the full viewport height
+      height: '90vh', // This ensures the container takes the full viewport height
       backgroundColor: isLight ? lightColor : darkColor,
       color: isLight ? darkColor : lightColor,
     },
