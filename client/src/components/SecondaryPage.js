@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getSecondaryPageStyles } from './Styles';
 
-const serverAPIPath = 'http://192.168.1.66:3001/api/';
+const serverAPIPath = process.env.REACT_APP_SERVER_API_PATH;
 
 function SecondaryPage({ colorTheme, path }) {
 

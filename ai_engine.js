@@ -4,8 +4,14 @@
  */
 const OpenAI = require("openai");
 
+// Initilize open ai instance with configuration.
+// Instance is shared across the data fetching functions. 
+const ai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+})
+
+// Data fetching functions (Gen-AI appraoch)
 async function genTruthQuestions(num) {
-  const ai = new OpenAI();
   const completion = await ai.chat.completions.create({
     response_format: { "type": "json_object" },
     messages: [
@@ -18,7 +24,6 @@ async function genTruthQuestions(num) {
 }
 
 async function genDareQuestions(num) {
-  const ai = new OpenAI();
   const completion = await ai.chat.completions.create({
     response_format: { "type": "json_object" },
     messages: [
@@ -31,7 +36,6 @@ async function genDareQuestions(num) {
 }
 
 async function genGameQuestions(num) {
-  const ai = new OpenAI();
   const completion = await ai.chat.completions.create({
     response_format: { "type": "json_object" },
     messages: [

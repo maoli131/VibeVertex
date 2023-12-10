@@ -5,6 +5,8 @@
  * generate the trust/dare/game questions. 
  */
 
+require('dotenv').config()
+
 const express = require('express');
 const cors = require('cors');
 const { genTruthQuestions, genDareQuestions, genGameQuestions } = require('./ai_engine');
