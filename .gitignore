@@ -3,3 +3,4 @@ package-lock.json
 other/
 .env*
 .DS_Store
+*.zip
