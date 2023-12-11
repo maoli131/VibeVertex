@@ -21,5 +21,16 @@ Party Elevate: VibeVertex redefines the way we experience gatherings, bringing a
 - Backend: Powered by Node.js for robust server-side functionality.
 - AI Integration: Enhanced with OpenAI's API for creative, context-aware content generation.
 
+## Tech Guide
+
+The project is divided into two parts: server and client. 
+
+1. To build and run client, `cd client && npm install && npm start`. It should uses the localhost:3000. 
+2. To build and run server, `npm install && node server.js`. 
+
+Some easy utils:
+
+1. To make a file that can be deployed to AWS EB, `npm run deploy`. 
+
 ## What's Next:
 Party Elevate is on a mission to expand its horizons with broader location support, interactive enhancements, and smarter AI personalization.
