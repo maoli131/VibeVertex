@@ -50,11 +50,6 @@ const onError = (error) => {
 	res.status(500).send('AI没想出来问题，请待会儿再试试。');
 }
 
-// Front-end serving
-app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname + '/client/build/index.html'));
-});
-
 // API definitions
 app.get('/api/truth', async (req, res) =>
 	handleIdeaRequest(req, res, fetchIdeas, genTruthIdeas)
@@ -67,3 +62,8 @@ app.get('/api/dare', async (req, res) =>
 app.get('/api/game', async (req, res) =>
 	handleIdeaRequest(req, res, fetchIdeas, genGameIdeas)
 );
+
+// [catch all] Serve static React frontend
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});

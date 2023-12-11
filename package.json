@@ -1,9 +1,10 @@
 {
-  "name": "VibeVertex",
+  "name": "vibevertex",
   "version": "1.0.0",
   "description": "## Overview: Party Elevate: VibeVertex redefines the way we experience gatherings, bringing an electrifying twist to social events. This cutting-edge app is your essential companion for organizing and revitalizing any party or social meetup.",
   "main": "index.js",
   "scripts": {
+    "start": "cd client && npm run build && cd .. && node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

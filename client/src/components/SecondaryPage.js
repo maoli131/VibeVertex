@@ -44,7 +44,7 @@ function SecondaryPage({ colorTheme, path }) {
 					title: 'Ops',
 					messages: ['很抱歉，AI开小差了，请稍后再试。']
 				});
-				console.error('Error fetching data: ', error);
+				console.error(`Error fetching data with ${serverAPIPath}`, error);
 			});
 	}
 
