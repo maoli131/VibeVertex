@@ -26,6 +26,10 @@ function SecondaryPage({ colorTheme, path }) {
 	// request to API to get more data
 	const fetchData = (path) => {
 		setIsLoading(true);
+		// Google Analytics: fetchd data event
+		window.gtag("event", "fetch_data", {
+			page_path: path
+		});
 		fetch(serverAPIPath + path)
 			.then(response => response.json())
 			.then(data => {
@@ -53,6 +57,10 @@ function SecondaryPage({ colorTheme, path }) {
 			// Go to the next message
 			setCurrentMessageIndex(currentMessageIndex + 1);
 		}
+		// Google Analytics: click next button
+		window.gtag("event", "click_next", {
+			page_path: path
+		});
 	}
 
 	// initial loading of data
