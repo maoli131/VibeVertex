@@ -9,6 +9,7 @@ require('dotenv').config()
 
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const { genTruthIdeas, genDareIdeas, genGameIdeas } = require('./ai_engine');
 const { fetchIdeas } = require('./data_engine');
 
@@ -17,15 +18,12 @@ const PORT = process.env.PORT || 3001;
 const useAI = true;
 const NUM_IDEADS = 10;
 
-// Server initialization
+// Server initialization: middle ware
 app.use(cors());
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.listen(PORT, () => {
 	console.log(`server listening on port ${PORT}`);
-});
-
-app.get('/', (req, res) => {
-	res.send('Hello from the server');
 });
 
 // Main functions
@@ -51,6 +49,11 @@ const onError = (error) => {
 	console.error('Error:', error);
 	res.status(500).send('AI没想出来问题，请待会儿再试试。');
 }
+
+// Front-end serving
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
 
 // API definitions
 app.get('/api/truth', async (req, res) =>
