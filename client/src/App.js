@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './components/MainPage.js';
 import SecondaryPage from './components/SecondaryPage.js';
 import NotFound from './components/NotFound';
+import SherryPage from './components/SherryPage.js';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="truth" element={<SecondaryPage colorTheme={'light'} path={'truth'} />} />
         <Route path="dare" element={<SecondaryPage colorTheme={'dark'} path={'dare'} />} />
         <Route path="game" element={<SecondaryPage colorTheme={'light'} path={'game'} />} />
+        <Route path="sherry" element={<SherryPage path={'sherry'} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

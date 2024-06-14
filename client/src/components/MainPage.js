@@ -27,6 +27,9 @@ function MainPage() {
 
 	return (
 		<div>
+			<div style={stylesLight.section} onClick={() => handleOnClick('/sherry')}>
+				Sherry
+			</div>
 			<div style={stylesDark.section} onClick={() => handleOnClick('/truth')}>
 				真心话
 			</div>

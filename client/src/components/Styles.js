@@ -61,4 +61,45 @@ const getSecondaryPageStyles = (theme) => {
   }
 };
 
-export { getMainPageStyles, getSecondaryPageStyles };
+const getSherryPageStyles = () => {
+  return {
+    container: {
+      padding: '20px',
+      textAlign: 'center'
+    },
+    login: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100vh'
+    },
+    input: {
+      margin: '10px 0',
+      padding: '10px',
+      width: '200px',
+      border: '1px solid #ccc',
+      borderRadius: '4px'
+    },
+    button: {
+      padding: '10px 20px',
+      backgroundColor: '#d3d3d3',
+      color: '#000',
+      border: 'none',
+      borderRadius: '4px',
+      cursor: 'pointer'
+    },
+    mainContent: {
+      textAlign: 'left'   // Aligns the text to the left
+    },
+    list: {
+      paddingLeft: '20px',   // Indent the list items
+      marginTop: '10px'      // Add space above the list
+    },
+    listItem: {
+      margin: '5px 0' // Add space between list items
+    }
+  };
+}
+
+export { getMainPageStyles, getSecondaryPageStyles, getSherryPageStyles };
