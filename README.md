@@ -31,6 +31,7 @@ The project is divided into two parts: server and client.
 Some easy utils:
 
 1. To make a file that can be deployed to AWS EB, `npm run deploy`. 
+2. Upload the generated `vibevertex.zip` to AWS EB's "Application Versions" and then choose deploy. 
 
 ## What's Next:
 Party Elevate is on a mission to expand its horizons with broader location support, interactive enhancements, and smarter AI personalization.
