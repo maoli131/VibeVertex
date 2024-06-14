@@ -16,7 +16,7 @@ const { fetchIdeas } = require('./data_engine');
 const app = express();
 const PORT = process.env.PORT || 3001;
 const useAI = true;
-const NUM_IDEADS = 10;
+const NUM_IDEADS = 30;
 
 // Server initialization: middle ware
 app.use(cors());
@@ -40,7 +40,6 @@ async function handleIdeaRequest(req, res, fetchIdeas, genIdeas) {
 	} catch (error) {
 		onError(error);
 	}
-	console.log(ideas);
 	res.json(ideas);
 }
 
