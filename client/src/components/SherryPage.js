@@ -12,7 +12,6 @@ function SherryPage() {
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-
   const handleLogin = () => {
     const user = data[username];
     if (user && user.password === password) {
@@ -41,6 +40,118 @@ function SherryPage() {
       <button onClick={handleLogin} style={styles.button}>
         冲鸭
       </button>
+    </div>
+  );
+
+  // Combined state for the Easter Egg inputs
+  const [easterEgg, setEasterEgg] = useState({
+    birthday: '',
+    age: '',
+    name: '',
+    identity: '', // New field for S's true identity
+    isBirthdayCorrect: true,
+    isAgeCorrect: true,
+    isNameCorrect: true,
+    isIdentityCorrect: true, // Validation flag for identity
+    isEasterEggCorrect: false
+  });
+
+  const handleEasterEggChange = (field, value) => {
+    setEasterEgg({
+      ...easterEgg,
+      [field]: value,
+      [`is${field.charAt(0).toUpperCase() + field.slice(1)}Correct`]: true,
+    });
+  };
+
+  const handleEasterEggSubmit = () => {
+    const isBirthdayValid = easterEgg.birthday === "06/20";
+    const isAgeValid = easterEgg.age === "18";
+    const isNameValid = easterEgg.name === "刘珺";
+    const isIdentityValid = easterEgg.identity === "小仙女";
+
+    setEasterEgg({
+      ...easterEgg,
+      isBirthdayCorrect: isBirthdayValid,
+      isAgeCorrect: isAgeValid,
+      isNameCorrect: isNameValid,
+      isIdentityCorrect: isIdentityValid, // Set validation for identity
+      isEasterEggCorrect: isBirthdayValid && isAgeValid && isNameValid && isIdentityValid,
+    });
+  };
+
+  const easterEggSection = (
+    <div style={styles.easterEggContainer}>
+      <h2>神秘的彩蛋</h2>
+      <p>希望你已经了解到了S的一些线索，试试看，能解开它吗</p>
+      <div>
+        <input
+          type="text"
+          placeholder="S的中文全名"
+          value={easterEgg.name}
+          onChange={(e) => handleEasterEggChange('name', e.target.value)}
+          style={styles.input}
+        />
+        {!easterEgg.isNameCorrect && <p style={styles.errorText}>你竟然不知道她的名字！</p>}
+      </div>
+      <div>
+        <input
+          type="text"
+          placeholder="S的生日 (DD/MM)"
+          value={easterEgg.birthday}
+          onChange={(e) => handleEasterEggChange('birthday', e.target.value)}
+          style={styles.input}
+        />
+        {!easterEgg.isBirthdayCorrect && <p style={styles.errorText}>可惜，她的真实生日不是这一天。</p>}
+      </div>
+      <div>
+        <input
+          type="text"
+          placeholder="S的年龄"
+          value={easterEgg.age}
+          onChange={(e) => handleEasterEggChange('age', e.target.value)}
+          style={styles.input}
+        />
+        {!easterEgg.isAgeCorrect && <p style={styles.errorText}>你确定吗，再猜猜看她多少岁。</p>}
+      </div>
+      <div>
+        <input
+          type="text"
+          placeholder="S的真实身份"
+          value={easterEgg.identity}
+          onChange={(e) => handleEasterEggChange('identity', e.target.value)}
+          style={styles.input}
+        />
+        {!easterEgg.isIdentityCorrect && <p style={styles.errorText}>仙女可不喜欢做这种工作！</p>}
+      </div>
+      <button onClick={handleEasterEggSubmit} style={styles.button}>
+        砸开彩蛋！
+      </button>
+      {easterEgg.isEasterEggCorrect && (
+        <div style={styles.easterEggContent}>
+          <h3>恭喜！</h3>
+          <p>
+            你成功解开了彩蛋！你绝对是了解S的好朋友。S希望跟你分享一个关于宝藏的秘密。
+          </p>
+          <p>
+            S从小希望做一个事业有成的小仙女。她喜欢一切美好、精致、优雅的事物，喜欢圆滚滚的小猫，
+            喜欢粉色的花海，喜欢温暖的午后阳光，喜欢小巧的茶具，喜欢像星星一样的宝石。
+          </p>
+          <p>
+            S希望和大家分享她所喜欢的美好事物。在最近夜以继日准备、协调、统筹之下，S打造了自己的小品牌 -
+            <strong><a href="https://shibeljewelryboutique.com/" target="_blank" rel="noopener noreferrer">希贝尓珠宝</a></strong>。
+            在S的理念里，希贝尓珠宝是accessible luxury，是定制的、拥有完美工艺的宝石。S与柘城De Beers供应商达成培育钻石小批量合作，
+            在老家苏州建立了设计、代加工团队，于5月开始试水了少量订单，反馈良好。
+          </p>
+          <p>
+            今天借S生日之际，希贝尓珠宝正式问世啦。你将有机会在抽奖和积分挑战中，获得希贝尓珠宝的小礼物。希望大家多多支持，
+            <a href="https://www.instagram.com/shibel_jewelry.official/" target="_blank" rel="noopener noreferrer">点赞关注</a>。
+          </p>
+          <p>
+            最后，请允许和M一起，祝S小仙女生日快乐。
+          </p>
+        </div>
+      )}
     </div>
   );
 
@@ -77,17 +188,19 @@ function SherryPage() {
           </ul>
           <h2>Part 3: 行动起来</h2>
           <p>
-            和新老朋友们一起快乐活动吧。完成任意一项可以获得10个积分。最先完成五个的客人可以指定其他任意编号“真心话/大冒险”。
+            和新老朋友们一起快乐活动吧。完成任意一项可以获得10个积分。最先完成五个的客人，经M验证后，可以指定其他任意编号“真心话/大冒险”。
           </p>
           <ul>
             {userData.activities.map((activity, index) => (
               <li key={index} style={styles.traitItem}>{activity}</li>
             ))}
           </ul>
-
+          {easterEggSection}
           <h2>注意事项</h2>
           <ul style={styles.list}>
+            <li style={styles.listItem}>希望大家玩的开心！</li>
             <li style={styles.listItem}>诚信玩家财运亨通，福星高照</li>
+            <li style={styles.listItem}>有任何问题，请联系M (微信群内名字为懋)。</li>
           </ul>
         </div>
       )}
