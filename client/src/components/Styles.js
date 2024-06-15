@@ -65,7 +65,9 @@ const getSherryPageStyles = () => {
   return {
     container: {
       padding: '20px',
-      textAlign: 'center'
+      textAlign: 'center',
+      backgroundColor: '#ff69b4',
+      color: 'white',
     },
     login: {
       display: 'flex',
@@ -83,11 +85,16 @@ const getSherryPageStyles = () => {
     },
     button: {
       padding: '10px 20px',
-      backgroundColor: '#d3d3d3',
-      color: '#000',
+      backgroundColor: 'white',  // Change background to white
+      color: '#ff69b4',             // Change text color to pink
       border: 'none',
       borderRadius: '4px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      transition: 'background-color 0.3s, color 0.3s', // Smooth transition for hover effect
+      ':hover': {
+        backgroundColor: '#ff69b4', // Background changes to pink on hover
+        color: 'white',          // Text color changes to white on hover
+      }
     },
     mainContent: {
       textAlign: 'left'   // Aligns the text to the left

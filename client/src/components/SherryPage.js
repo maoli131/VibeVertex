@@ -24,7 +24,7 @@ function SherryPage() {
   const loginSection = (
     <div style={styles.login}>
       <h2>邀请函</h2>
-      <p>恭喜你，签到人！诚邀开启，城堡之旅。</p>
+      <p>恭喜你，签到人！<br /> 诚邀开启，城堡之旅。</p>
       <input
         placeholder="签到号"
         value={username}
@@ -200,6 +200,7 @@ function SherryPage() {
           <ul style={styles.list}>
             <li style={styles.listItem}>希望大家玩的开心！</li>
             <li style={styles.listItem}>诚信玩家财运亨通，福星高照</li>
+            <li style={styles.listItem}>活动内容均由AI生成，包括本网站。不足处多多包涵。</li>
             <li style={styles.listItem}>有任何问题，请联系M (微信群内名字为懋)。</li>
           </ul>
         </div>
